@@ -1,3 +1,77 @@
 List of Requests received + client address
 
 
+
+2015-03-20 20:57:25 GET /hello HTTP/1.1
+Host: localhost:8888
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+ 127.0.0.1 40249
+2015-03-20 20:57:25 GET /favicon.ico HTTP/1.1
+Host: localhost:8888
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+ 127.0.0.1 40250
+2015-03-20 20:57:28 GET /test HTTP/1.1
+Host: localhost:8888
+Connection: keep-alive
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+ 127.0.0.1 40251
+2015-03-20 20:57:28 GET /favicon.ico HTTP/1.1
+Host: localhost:8888
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+ 127.0.0.1 40252
+2015-03-20 20:57:34 hello 127.0.0.1 40253
+2015-03-20 20:57:41 time 127.0.0.1 40255
+2015-03-20 20:57:47 time 127.0.0.1 40255
+2015-03-20 20:57:51 GET /test HTTP/1.1
+Host: localhost:8888
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+ 127.0.0.1 40256
+2015-03-20 20:57:51 GET /favicon.ico HTTP/1.1
+Host: localhost:8888
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+ 127.0.0.1 40257
+2015-03-20 20:57:56 hello 127.0.0.1 40258
+2015-03-20 20:57:59 GET /test HTTP/1.1
+Host: localhost:8888
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+ 127.0.0.1 40259
+2015-03-20 20:57:59 GET /favicon.ico HTTP/1.1
+Host: localhost:8888
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+ 127.0.0.1 40260
+2015-03-20 20:58:02 time 127.0.0.1 40261
+2015-03-20 20:58:08 test 127.0.0.1 40261

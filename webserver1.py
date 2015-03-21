@@ -7,29 +7,60 @@ HOST, PORT = '', 8888
 
 # create tcp/ip socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 # Bind socket to localhost and port
 print 'Serving HTTP on port %s ...' % PORT
 sock.bind((HOST, PORT))
 sock.listen(1)
 
-def request_options(data):
-	if data == 'time':
-		return gettime()
-	elif data == 'wifi strength':
-		return getwifi()
+##global connection open or closed
+con = 'open'
+
+def request_options(data,connection):
+	datasplit = data.split()
+	if datasplit[0] == 'time':
+		gettime(connection)
+	elif datasplit[0] == 'wifi':
+		getwifi(connection)
+	elif len(datasplit) > 1 and datasplit[2] == 'HTTP/1.1':
+		getpage(datasplit[1],connection)
 	else:
-		return 'no command found for \'' + data + '\''
+		connection.sendall('no command found for \'' + data + '\' \n')
 
 # return current time
-def gettime():
-	return (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+def gettime(connection):
+	global con
+	con = 'open'
+	time_resp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+	connection.sendall(time_resp + '\n')
 
 # return wifi strength
-def getwifi():
+def getwifi(connection):
+	global con
+	con = 'open'
 	proc = subprocess.check_output(['python wifi_strength.py'],shell=True)
-	return proc
+	connection.sendall(proc + '\n')
+	
+def getpage(fname,connection):
+	global con
+	con = 'closed'
+	try:
+		f = open(fname[1:] + '.html')
+		fout = f.read()
+	
+		connection.send('HTTP/1.1 200 OK\nContent-Type: text/html\n\n')
+		for i in range(0, len(fout)):
+			connection.send(fout[i])
+		connection.close()
+	except:
+		f = open('noPage.html')
+		fout = f.read()
+		
+		connection.send('HTTP/1.1 200 OK\nContent-Type: text/html\n\n')
+		for i in range(0, len(fout)):
+			connection.send(fout[i])
+		connection.close()
 
 def main():
 	while True:
@@ -53,13 +84,16 @@ def main():
 					request_file.write('\n' + curr_time + ' ' + data + ' ' + str(client_address[0]) + ' ' + str(client_address[1]))
 					request_file.close()
 					
-					response = request_options(data)
-					
-					# send a message back to the user
-					print 'sending response to user \n'
-					connection.sendall(response + '\n')
+					# Process the request and send a response to user.
+					print 'Processing request...'
+					request_options(data,connection)
+					print 'Finished \n'
 				else:
 					print 'no more data from', client_address, 'closing connection'
+					break
+
+				#check connection
+				if con == 'closed':
 					break
 		finally:
 			#close and clean up connection
