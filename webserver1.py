@@ -3,7 +3,7 @@ import sys
 import subprocess
 import time
 
-HOST, PORT = '', 8888
+HOST, PORT = '192.168.1.126', 8888
 
 # create tcp/ip socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -72,7 +72,7 @@ def main():
 		
 			#recieve data and send back info
 			while True:
-				data = connection.recv(1024)
+				data = connection.recv(1492)
 				# recv places 2 extra spaces at the end of data, remove this
 				data = data[0:len(data)-2]
 				print 'received: ', data
