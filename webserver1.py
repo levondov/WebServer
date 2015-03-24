@@ -3,7 +3,7 @@ import sys
 import subprocess
 import time
 
-HOST, PORT = '192.168.1.126', 8888
+HOST, PORT = '192.168.1.122', 8888
 
 # create tcp/ip socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
