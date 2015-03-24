@@ -1,8 +1,11 @@
+#!/usr/bin/env python
+
 # Using BeautifulSoup to extract messages through the html page
 from googlevoice import Voice
 from googlevoice.util import input
 import time
 import sys
+import os
 from bs4 import BeautifulSoup
 
 
@@ -43,6 +46,15 @@ def extractmsg(htmlpage):
 
 	return spanNum_receive,spanMes_receive
 
+def init_sms_response_system():
+	mail_list = open('../../maillist.txt','r')
+	for line in mail_list:
+		voice.send_sms(line,'Welcome to the raspberry pi sms response system. ' \
+		'To see a list of possible commands reply back with \'help\' ' \
+		'If you want to removed from this list please message levon')
+		if 'str' in line:
+			break
+
 def savetofile(num,mes) :
 	# check to see if input is empty. This means no new messages to write so break out of the method
 
@@ -56,9 +68,44 @@ def savetofile(num,mes) :
 def processrequest(num,mes) :
 	# read the sms and reply accordingly
 	for i in range(0,len(num)):
-		if (mes[i].find('hi') != -1 or mes[i].find('Hi') != -1):
+		if (mes[i].lower().find('hi') != -1):
 			voice.send_sms(num[i],'Hello, this is the raspberry pi')
+		elif (mes[i].lower().find('stop') != -1 or mes[i].find('kill') != -1):
+			os.system('kill -9 $(pidof motion)')
+			voice.send_sms(num[i],'Motion has been turned off. Use \'restart\' to turn it back on')
+		elif (mes[i].lower().find('restart') != -1):
+			os.system('kill -9 $(pidof motion)')
+			os.system('motion start')		
+			voice.send_sms(num[i],'Motion has restarted.')
+		elif (mes[i].lower().find('help') != -1):
+			voice.send_sms(num[i],'I can handle the following commands: \n' \
+			'help, kill/stop, restart, start webserver, start network monitor, and execute reboot (reboots me).')
+		elif (mes[i].lower().find('execute reboot') != -1):
+			os.system('reboot')
+		elif (mes[i].lower().find('start webserver') != -1):
+			try:
+				os.system('python ../webserver1.py &')
+				voice.send_sms(num[i],'WebServer initiated, find the homepage at http://192.168.1.122:8888/hello')
+			except:
+				voice.send_sms(num[i],'The WebServer is already running.')
+		elif (mes[i].lower().find('start network monitor') != -1):
+			try:
+				os.system('./network_monitor.sh &')
+                                voice.send_sms(num[i],'Network monitor turned on. If my wifi goes down I will message you.')
+                        except:
+                                voice.send_sms(num[i],'Network monitor is already on')
+		elif(mes[i].lower().find('empty ') != -1):
+			num_delete_days = mes[i][mes[i].lower().find('empty ')+6]
+			cmdstring = 'find /media/networkshare/protected -mtime +%s -exec rm {} \;' % (num_delete_days)
+			try:
+				os.system(cmdstring)
+				voice.send_sms(num[i],'Done!')
+			except:
+				voice.send_sms(num[i],'Sorry, something went wrong. See ~/WebServer/cam_stuff/sms_responses2.py' \
+				'at line 100')
 
+		else:
+			voice.send_sms(num[i],'Sorry I didn\"t understand that command. Try again or reply \"help\"  to see my options')
 def deletesms() :
 	# after checking,replying, and saving messages, delete them on google voice
 	for message in voice.sms().messages:
@@ -69,6 +116,8 @@ global voice
 voice = Voice()
 voice.login()
 
+# Initialize mailing list, send out a message to let people know system is up and running
+init_sms_response_system()
 
 # Check for new messages every minute
 # if new message: process, reply, save, then delete message
