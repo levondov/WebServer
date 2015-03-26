@@ -1,0 +1,1 @@
+echo see 192.168.1.121:/pictures/cam_pics. | mail -a %f -v -s "New Motion Detected" levondovl@gmail.com echo see 192.168.1.121:/pictures/cam_pics. | mail -a %f -v -s "New Motion Detected" levondovl@gmail.com 

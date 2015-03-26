@@ -1,3 +1,8 @@
+March 26
+- added dropbox file support
+	- images are uploaded after an event and then a share link is texted to anyone on the mailing list
+- fixed minor bugs and problems.
+- removed email support. No more emails will be sent w/ images/video
 March 23
 - added sms responses
 	- i.e. You can txt the raspberry pi a cmd and it will process your request. See sms_responses.py in cam_stuff.

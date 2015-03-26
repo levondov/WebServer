@@ -49,7 +49,7 @@ def extractmsg(htmlpage):
 def init_sms_response_system():
 	mail_list = open('/home/pi/logs/maillist.txt','r')
 	for line in mail_list:
-		voice.send_sms(line,'Raspberry Pi response system online. reply with \"help\" for more options')
+		voice.send_sms(line,'Raspberry Pi response system ver 0.1 online. reply with \"help\" for more options')
 		if 'str' in line:
 			break
 
@@ -60,7 +60,10 @@ def savetofile(num,mes) :
 	request_file = open('/home/pi/logs/sms_responses2.txt','a')
 	for i in range (0,len(num)) :
 		curr_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-		request_file.write('\n' + num[i] + '-' + curr_time + ' ' + mes[i])
+		try:
+			request_file.write('\n' + num[i] + '-' + curr_time + ' ' + mes[i])
+		except:
+			request_file.write('\n' + num[i] + '-' + curr_time + ' ' + 'Message isn\"t ascii')
 	request_file.close()
 
 def processrequest(num,mes) :
