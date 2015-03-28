@@ -1,6 +1,12 @@
+March 27
+- switched from google voice to twilio
+	- still need to update sms_responses2.py to twilio
+- working on using ngrok to add port access through internet
+
 March 26
 - added dropbox file support
 	- images are uploaded after an event and then a share link is texted to anyone on the mailing list
+	- used a shell script called dropbox_Uploader. see github.com/andreabrizi
 - fixed minor bugs and problems.
 - removed email support. No more emails will be sent w/ images/video
 March 23
