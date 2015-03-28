@@ -98,3 +98,18 @@ Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
 Connection: keep-alive
  192.168.1.126 60507
+2015-03-27 22:16:12 GET / HTTP/1.1
+Host: 7b45a1c0.ngrok.com
+X-Real-IP: 166.137.8.118
+X-Forwarded-Proto: http
+Connection: close
+Accept: text/html, application/xhtml+xml, */*
+Accept-Language: en-us
+x-att-deviceid: NOKIA 909/3051.50009.1425.2001
+User-Agent: Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; 909) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537
+UA-CPU: ARM
+Accept-Encoding: gzip, deflate
+DNT: 1
+Cookie: _ga=GA1.2.193606977.1427516841; wcsid=I8dLc12HqV3m39N0HJZcWeBbDS8AZJo1; hblid=e13EjkG3WY3m39N0HJZcWZ8B3DJSbAo1; _oklv=1427517202162%2CI8dLc12HqV3m39N0HJZcWeBbDS8AZJo1
+Via: HTTP/1.1 vnnnz02msp4ts06.wnsnet.attws.com
+ 192.168.1.126 53405
